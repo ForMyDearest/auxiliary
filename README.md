@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/github/license/ForMyDearest/auxiliary?label=license&style=flat-square)](./LICENSE)
 
-Basic tools for C++
+Tools for C++
 
 # Components
 
