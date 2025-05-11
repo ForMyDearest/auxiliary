@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/github/license/ForMyDearest/auxiliary?label=license&style=flat-square)](./LICENSE)
 
-Tools for C++
+Basic tools for C++
 
 # Components
 
@@ -15,8 +15,8 @@ Tools for C++
 
 # Dependencies
 
-- [yyjson](https://github.com/ibireme/yyjson) (MIT)
 - [xxhash](https://github.com/Cyan4973/xxHash) (BSD 2-Clause License)
+- [yyjson](https://github.com/ibireme/yyjson) (MIT)
 
 # TODO
 
