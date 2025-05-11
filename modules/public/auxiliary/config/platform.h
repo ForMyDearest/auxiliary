@@ -1,0 +1,122 @@
+#pragma once
+
+/*
+AUXILIARY_PLATFORM_WIN64
+AUXILIARY_PLATFORM_WIN32
+AUXILIARY_PLATFORM_UWP
+AUXILIARY_PLATFORM_WINDOWS
+
+AUXILIARY_PLATFORM_UNIX
+
+AUXILIARY_PLATFORM_IPHONE_SIMULATOR
+AUXILIARY_PLATFORM_IPHONE
+AUXILIARY_PLATFORM_MACOSX
+TARGET_MACOS
+TARGET_IOS
+TARGET_MACCAT
+
+TARGET_TVOS
+TARGET_IOS_OR_TVOS
+TARGET_MACOS_OR_IOS
+TARGET_OS_SIMULATOR
+TARGET_APPLE_SILICON
+TARGET_MACOS_APPLE_SILICON
+TARGET_XCODE_13
+TARGET_XCODE_12
+
+OS_DPI
+*/
+
+#if defined(_WIN64)
+#   define AUXILIARY_PLATFORM_WIN64		1
+#elif defined(_WIN32) || defined(__WIN32__)
+#   define AUXILIARY_PLATFORM_WIN32		1
+#elif defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
+#   define AUXILIARY_PLATFORM_UNIX		1
+#elif defined(__APPLE__) && defined(__MACH__)
+#   include <TargetConditionals.h>
+#   if TARGET_IPHONE_SIMULATOR == 1
+#       define AUXILIARY_PLATFORM_IPHONE_SIMULATOR	1
+#   elif TARGET_OS_IPHONE == 1
+#       define AUXILIARY_PLATFORM_IPHONE			1
+#   elif TARGET_OS_MAC == 1
+#       define AUXILIARY_PLATFORM_MACOSX			1
+#	else
+#		error Unrecognized Operating System
+#   endif
+#else
+#   error Unrecognized Operating System
+#endif
+
+
+
+#define AUXILIARY_HEADER_SCOPE_DEFINING
+#	if defined(_WIN32)
+#		include "platform/win.inc"
+#	elif defined(__APPLE__)
+#		include "platform/apple.h"
+#	endif
+#undef AUXILIARY_HEADER_SCOPE_DEFINING
+
+
+
+#ifndef AUXILIARY_PLATFORM_WIN64
+#	define AUXILIARY_PLATFORM_WIN64	0
+#endif
+#ifndef AUXILIARY_PLATFORM_WIN32
+#	define AUXILIARY_PLATFORM_WIN32	0
+#endif
+#ifndef AUXILIARY_PLATFORM_UWP
+#	define AUXILIARY_PLATFORM_UWP	0
+#endif
+#ifndef AUXILIARY_PLATFORM_WINDOWS
+#	define AUXILIARY_PLATFORM_WINDOWS	0
+#endif
+#ifndef AUXILIARY_PLATFORM_UNIX
+#	define AUXILIARY_PLATFORM_UNIX	0
+#endif
+#ifndef AUXILIARY_PLATFORM_IPHONE_SIMULATOR
+#	define AUXILIARY_PLATFORM_IPHONE_SIMULATOR	0
+#endif
+#ifndef AUXILIARY_PLATFORM_IPHONE
+#	define AUXILIARY_PLATFORM_IPHONE	0
+#endif
+#ifndef AUXILIARY_PLATFORM_MACOSX
+#	define AUXILIARY_PLATFORM_MACOSX	0
+#endif
+#ifndef TARGET_MACOS
+#	define TARGET_MACOS	0
+#endif
+#ifndef TARGET_IOS
+#	define TARGET_IOS	0
+#endif
+#ifndef TARGET_MACCAT
+#	define TARGET_MACCAT	0
+#endif
+#ifndef TARGET_TVOS
+#	define TARGET_TVOS	0
+#endif
+#ifndef TARGET_IOS_OR_TVOS
+#	define TARGET_IOS_OR_TVOS	0
+#endif
+#ifndef TARGET_MACOS_OR_IOS
+#	define TARGET_MACOS_OR_IOS	0
+#endif
+#ifndef TARGET_OS_SIMULATOR
+#	define TARGET_OS_SIMULATOR	0
+#endif
+#ifndef TARGET_APPLE_SILICON
+#	define TARGET_APPLE_SILICON	0
+#endif
+#ifndef TARGET_MACOS_APPLE_SILICON
+#	define TARGET_MACOS_APPLE_SILICON	0
+#endif
+#ifndef TARGET_XCODE_13
+#	define TARGET_XCODE_13	0
+#endif
+#ifndef TARGET_XCODE_12
+#	define TARGET_XCODE_12	0
+#endif
+#ifndef OS_DPI
+#	define OS_DPI 72
+#endif
