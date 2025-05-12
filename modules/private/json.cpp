@@ -1,4 +1,5 @@
 #include "pch.hpp"
+#include "log.hpp"
 
 #include <auxiliary/json.hpp>
 
@@ -337,8 +338,7 @@ namespace auxiliary
 		yyjson_read_err err = {};
 		document = reinterpret_cast<JsonReaderDocument*>(yyjson_read_opts(reinterpret_cast<char*>(const_cast<char8_t*>(json)), len, 0, nullptr, &err));
 		if (document == nullptr) {
-			auto s = format(u8"Failed to parse JSON: {}, error: {}", u8string_view{json, len}, err.msg);
-			u8lib::internal::report_error(s.data());
+			LOG_ERROR(u8"Failed to parse JSON: {}, error: {}", u8string_view{json, len}, err.msg);
 		}
 	}
 
